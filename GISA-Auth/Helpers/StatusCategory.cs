@@ -2,7 +2,7 @@
 {
     public class StatusCategory
     {
-        public const string Error = "Error";
-        public const string Success = "Success";
+        public const string Error = "Erro";
+        public const string Success = "Sucesso";
     }
 }
