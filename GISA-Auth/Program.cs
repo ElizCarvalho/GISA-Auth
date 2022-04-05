@@ -1,4 +1,5 @@
 using GISA_Auth.Auth;
+using GISA_Auth.Auth.Model;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -18,7 +19,7 @@ builder.Services
 
 #region For Identity
 builder.Services
-    .AddIdentity<IdentityUser, IdentityRole>()
+    .AddIdentity<ApplicationUser, IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>()
     .AddDefaultTokenProviders();
 #endregion

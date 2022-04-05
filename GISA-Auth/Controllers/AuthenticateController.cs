@@ -1,4 +1,5 @@
 ﻿using GISA_Auth.Auth;
+using GISA_Auth.Auth.Model;
 using GISA_Auth.Auth.Model.DTO;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -13,12 +14,12 @@ namespace GISA_Auth.Controllers
     [ApiController]
     public class AuthenticateController : ControllerBase
     {
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly UserManager<ApplicationUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly IConfiguration _configuration;
 
         public AuthenticateController(
-            UserManager<IdentityUser> userManager,
+            UserManager<ApplicationUser> userManager,
             RoleManager<IdentityRole> roleManager,
             IConfiguration configuration)
         {
@@ -36,6 +37,11 @@ namespace GISA_Auth.Controllers
             var user = await _userManager.FindByEmailAsync(model.Email);
             if (user != null && await _userManager.CheckPasswordAsync(user, model.Password))
             {
+                var userUpdate = (ApplicationUser)user;
+                userUpdate.Latitude = model.Latitude;
+                userUpdate.Longitude = model.Longitude;
+                userUpdate.LastAccess = DateTime.Now;
+                var result = await _userManager.UpdateAsync(userUpdate);
                 var userRoles = await _userManager.GetRolesAsync(user);
                 var token = GetToken(GenClaim(user, userRoles));
 
@@ -57,11 +63,14 @@ namespace GISA_Auth.Controllers
             if (userExists != null)
                 return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = StatusCategory.Error, Message = MessageCategory.UserAlreadyExists.Value });
 
-            IdentityUser user = new()
+            ApplicationUser user = new()
             {
                 Email = model.Email,
                 SecurityStamp = Guid.NewGuid().ToString(),
-                UserName = model.Email?.Split('@')[0]
+                UserName = model.Email?.Split('@')[0],
+                DateCreated = DateTime.Now,
+                Latitude = model.Latitude,
+                Longitude = model.Longitude
             };
 
             var result = await _userManager.CreateAsync(user, model.Password);
@@ -115,7 +124,7 @@ namespace GISA_Auth.Controllers
             return role;
         }
 
-        private static List<Claim> GenClaim(IdentityUser user, IList<string> userRoles)
+        private static List<Claim> GenClaim(ApplicationUser user, IList<string> userRoles)
         {
             var authClaims = new List<Claim>
                 {
@@ -141,7 +150,7 @@ namespace GISA_Auth.Controllers
                 await _roleManager.CreateAsync(new IdentityRole(EnumUserRoles.Prestador.ToString()));
         }
 
-        private async Task AddUserToRole(int modelRole, IdentityUser user)
+        private async Task AddUserToRole(int modelRole, ApplicationUser user)
         {
             switch (modelRole)
             {

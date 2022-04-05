@@ -18,5 +18,8 @@ namespace GISA_Auth.Auth
         [Required]
         public int Role { get; set; }
 
+        public string Latitude { get; set; } = string.Empty;
+        public string Longitude { get; set; } = string.Empty;
+
     }
 }
