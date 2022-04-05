@@ -14,7 +14,7 @@ services:
   sqldb:
     image: mcr.microsoft.com/mssql/server:2019-latest
     environment:
-      - SA_PASSWORD=!Gisa@2022#
+      - SA_PASSWORD=PASSWORD_DATABASE
       - ACCEPT_EULA=Y
     ports:
       - "1450:1433"
