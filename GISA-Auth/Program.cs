@@ -52,11 +52,12 @@ builder.Services.AddCors();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 
-#region Config about Swagger
+#region Config about Service Swagger
 builder.Services.AddSwaggerGen(c =>
 {
-    c.SwaggerDoc("v1", new OpenApiInfo { 
-        Title = "Api GISA Authentication", 
+    c.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Title = "Api GISA Authentication",
         Version = "v1",
         Contact = new OpenApiContact { Name = "GISA Support", Email = "support@gisa.com" },
         License = new OpenApiLicense() { Name = "MIT" }
@@ -92,10 +93,19 @@ var app = builder.Build();
 #region Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseDeveloperExceptionPage();
 }
 #endregion
+
+#region Config about app Swagger
+app.UseSwagger();
+app.UseSwaggerUI(c =>
+{
+    c.SwaggerEndpoint("../swagger/v1/swagger.json", "v1");
+});
+#endregion
+
+app.UseHttpsRedirection();
 
 #region Global cors policy
 app.UseCors(x => x
@@ -103,8 +113,6 @@ app.UseCors(x => x
     .AllowAnyMethod()
     .AllowAnyHeader());
 #endregion
-
-app.UseHttpsRedirection();
 
 #region Authentication & Authorization
 app.UseAuthentication();

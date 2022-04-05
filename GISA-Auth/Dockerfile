@@ -7,10 +7,10 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["GISA-Auth/GISA-Auth.csproj", "GISA-Auth/"]
-RUN dotnet restore "GISA-Auth/GISA-Auth.csproj"
+COPY ["GISA-Auth.csproj", "."]
+RUN dotnet restore "./GISA-Auth.csproj"
 COPY . .
-WORKDIR "/src/GISA-Auth"
+WORKDIR "/src/."
 RUN dotnet build "GISA-Auth.csproj" -c Release -o /app/build
 
 FROM build AS publish

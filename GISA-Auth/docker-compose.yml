@@ -1,0 +1,28 @@
+version: '3.4'
+
+services:
+  gisa_auth:
+    image: ${DOCKER_REGISTRY-}gisa_auth
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "9000:80"
+    depends_on:
+      - sqldb
+      - migration_gisa_auth
+  sqldb:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    environment:
+      - SA_PASSWORD=!Gisa@2022#
+      - ACCEPT_EULA=Y
+    ports:
+      - "1450:1433"
+    volumes:
+      - C:\gisa_data\volumes\sqlserver:/var/opt/mssql/data
+    depends_on:
+      - migration_gisa_auth
+  migration_gisa_auth:
+    build:
+      context: .
+      dockerfile: Migrations.Dockerfile

@@ -1,6 +1,5 @@
 ﻿using GISA_Auth.Auth;
 using GISA_Auth.Auth.Model.DTO;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
@@ -10,7 +9,7 @@ using System.Text;
 
 namespace GISA_Auth.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/auth")]
     [ApiController]
     public class AuthenticateController : ControllerBase
     {

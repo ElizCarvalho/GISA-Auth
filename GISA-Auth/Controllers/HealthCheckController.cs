@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace GISA_Auth.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/healthcheck")]
     public class HealthCheckController : ControllerBase
     {
         public HealthCheckController() { }
