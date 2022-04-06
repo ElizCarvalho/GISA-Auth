@@ -1,5 +1,10 @@
 version: '3.4'
 
+networks:
+  gisa-net:
+    name: gisa-net
+    driver: bridge
+
 services:
   gisa_auth:
     image: ${DOCKER_REGISTRY-}gisa_auth
@@ -7,10 +12,16 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "9000:80"
+      - "9000:5000"
     depends_on:
       - sqldb
       - migration_gisa_auth
+    networks:
+      - gisa-net
+    restart: on-failure
+    deploy:
+      restart_policy:
+        condition: on-failure
   sqldb:
     image: mcr.microsoft.com/mssql/server:2019-latest
     environment:
@@ -22,7 +33,19 @@ services:
       - C:\gisa_data\volumes\sqlserver:/var/opt/mssql/data
     depends_on:
       - migration_gisa_auth
+    networks:
+      - gisa-net
+    restart: on-failure
+    deploy:
+      restart_policy:
+        condition: on-failure
   migration_gisa_auth:
     build:
       context: .
       dockerfile: Migrations.Dockerfile
+    networks:
+      - gisa-net
+    restart: on-failure
+    deploy:
+      restart_policy:
+        condition: on-failure

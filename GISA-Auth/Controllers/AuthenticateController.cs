@@ -10,7 +10,7 @@ using System.Text;
 
 namespace GISA_Auth.Controllers
 {
-    [Route("api/auth")]
+    [Route("account")]
     [ApiController]
     public class AuthenticateController : ControllerBase
     {
