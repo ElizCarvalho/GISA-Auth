@@ -65,9 +65,9 @@ namespace GISA_Auth.Controllers
 
             ApplicationUser user = new()
             {
-                Email = model.Email,
+                Email = model.Email?.Trim().ToLower(),
                 SecurityStamp = Guid.NewGuid().ToString(),
-                UserName = model.Email?.Split('@')[0],
+                UserName = model.Email?.Trim().ToUpper().Split('@')[0],
                 DateCreated = DateTime.Now,
                 Latitude = model.Latitude,
                 Longitude = model.Longitude
