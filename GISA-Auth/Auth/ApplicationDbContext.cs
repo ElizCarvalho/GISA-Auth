@@ -8,6 +8,7 @@ namespace GISA_Auth.Auth
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
+            base.Database.EnsureCreated();
         }
         protected override void OnModelCreating(ModelBuilder builder)
         {
