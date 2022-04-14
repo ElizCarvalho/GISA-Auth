@@ -101,10 +101,9 @@ namespace GISA_Auth.Controllers
             var user = await _userManager.FindByNameAsync(jwtSecurityToken.Claims.First(c => c.Type.Contains("name")).Value);
             var role = jwtSecurityToken.Claims.First(c => c.Type.Contains("role")).Value;
 
-            return Ok(new UserResponse
+            return Ok(new ResponseLogin
             {
-                Role = GetRoleUserResponse(role),
-                Username = user.UserName
+                User = new UserResponse { Role = GetRoleUserResponse(role), Username = user.UserName }
             });
         }
 
