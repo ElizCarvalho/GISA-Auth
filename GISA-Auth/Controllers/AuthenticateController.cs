@@ -91,6 +91,23 @@ namespace GISA_Auth.Controllers
             });
         }
 
+        [HttpGet("userinfo")]
+        public async Task<ActionResult> GetUserInfo()
+        {
+            HttpClient client = new HttpClient();
+            string token = HttpContext.Request.Headers.First(x => x.Key == "access_token").Value;
+            var handler = new JwtSecurityTokenHandler();
+            var jwtSecurityToken = handler.ReadJwtToken(token);
+            var user = await _userManager.FindByNameAsync(jwtSecurityToken.Claims.First(c => c.Type.Contains("name")).Value);
+            var role = jwtSecurityToken.Claims.First(c => c.Type.Contains("role")).Value;
+
+            return Ok(new UserResponse
+            {
+                Role = GetRoleUserResponse(role),
+                Username = user.UserName
+            });
+        }
+
         private JwtSecurityToken GetToken(List<Claim> authClaims)
         {
             var authSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWT:Secret"]));

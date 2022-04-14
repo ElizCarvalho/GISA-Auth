@@ -70,7 +70,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"email\": \"giovanna@gisa.com\",\r\n  \"password\": \"Tst@2020\",\r\n  \"latitude\": \"{{$randomLatitude}}\",\r\n  \"longitude\": \"{{$randomLongitude}}\"\r\n}",
+							"raw": "{\r\n  \"email\": \"elizabeth@gisa.com\",\r\n  \"password\": \"Tst@2020\",\r\n  \"latitude\": \"{{$randomLatitude}}\",\r\n  \"longitude\": \"{{$randomLongitude}}\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -146,6 +146,51 @@
 								"auth",
 								"account",
 								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[API] Account GetUserInfo",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(pm.info.requestName + \" - Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(pm.info.requestName + \" - Response Time OK\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "access_token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiZWxpemFiZXRoIiwianRpIjoiZDJhMzg5ZWQtYTVmNS00MTcyLTk4NTYtNTEzZjUzZjljYmJmIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiQWRtaW4iLCJleHAiOjE2NDk5MDg0MDcsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6OTAwMCIsImF1ZCI6Imh0dHA6Ly9sb2NhbGhvc3Q6OTAwMCJ9.0W80DMYeO6fFx2M2_Tar4bmqNoKisbSHBfoE8Axuu6o",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/gisa/auth/account/userinfo",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"gisa",
+								"auth",
+								"account",
+								"userinfo"
 							]
 						}
 					},
