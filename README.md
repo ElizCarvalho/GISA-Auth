@@ -14,7 +14,7 @@ API de autenticação da POC desenvolvida como parte da entrega do TCC para obte
 * [JWT](https://jwt.io/introduction)
 * [Entity Framework](https://docs.microsoft.com/pt-br/ef/)
 * [Open API](https://swagger.io/specification/)
-* [Core 6](https://docs.microsoft.com/pt-br/dotnet/core/compatibility/6.0)
+* [.Net 6](https://docs.microsoft.com/pt-br/dotnet/core/compatibility/6.0)
 
 ## Iniciando
 
@@ -34,7 +34,7 @@ Faz-se necessário ter o [Docker](https://docs.docker.com/get-docker/) instalado
    ```yml
    - SA_PASSWORD = PASSWORD_DATABASE
    ```
-4. Repita a senha em `appsettings.json` na propriedade `DefaultConnection` em appsettings.json `Password` 
+4. Repita a senha em `appsettings.json` na propriedade `Password` em `DefaultConnection` 
    ```json
    "DefaultConnection": "Initial Catalog=gisa-auth-db; Data Source=sqldb; Persist Security Info=True;User ID=SA;Password=PASSWORD_DATABASE;"
    ```
