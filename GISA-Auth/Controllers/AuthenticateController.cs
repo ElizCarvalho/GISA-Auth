@@ -49,7 +49,7 @@ namespace GISA_Auth.Controllers
                 {
                     Token = new JwtSecurityTokenHandler().WriteToken(token),
                     Expiration = token.ValidTo,
-                    User = new UserResponse { Role = GetRoleUserResponse(userRoles.First()), Username = user.UserName }
+                    User = new UserResponse { Role = GetRoleUserResponse(userRoles.First()), Username = user.UserName, Id = user.Id }
                 });
             }
             return Unauthorized();
@@ -87,7 +87,7 @@ namespace GISA_Auth.Controllers
             {
                 Token = new JwtSecurityTokenHandler().WriteToken(token),
                 Expiration = token.ValidTo,
-                User = new UserResponse { Role = GetRoleUserResponse(userRoles.First()), Username = user.UserName }
+                User = new UserResponse { Role = GetRoleUserResponse(userRoles.First()), Username = user.UserName, Id = user.Id }
             });
         }
 
