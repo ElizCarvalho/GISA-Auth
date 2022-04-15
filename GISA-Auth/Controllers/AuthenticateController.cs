@@ -98,12 +98,13 @@ namespace GISA_Auth.Controllers
             string token = HttpContext.Request.Headers.First(x => x.Key == "access_token").Value;
             var handler = new JwtSecurityTokenHandler();
             var jwtSecurityToken = handler.ReadJwtToken(token);
+            var userId = jwtSecurityToken.Claims.First(c => c.Type.Contains("sub")).Value;
             var user = await _userManager.FindByNameAsync(jwtSecurityToken.Claims.First(c => c.Type.Contains("name")).Value);
             var role = jwtSecurityToken.Claims.First(c => c.Type.Contains("role")).Value;
 
             return Ok(new ResponseLogin
             {
-                User = new UserResponse { Role = GetRoleUserResponse(role), Username = user.UserName }
+                User = new UserResponse { Role = GetRoleUserResponse(role), Username = user.UserName, Id = userId }
             });
         }
 
