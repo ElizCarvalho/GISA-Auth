@@ -1,0 +1,586 @@
+{
+	"info": {
+		"_postman_id": "b07aebda-c3b5-4afb-945a-e43c907e6088",
+		"name": "PUCMG - POC GISA",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "[API] Healthcheck",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(pm.info.requestName + \" - Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(pm.info.requestName + \" - Response Time OK\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/gisa/auth/healthcheck",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"gisa",
+								"auth",
+								"healthcheck"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[API] Account Login Associado",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(pm.info.requestName + \" - Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(pm.info.requestName + \" - Response Time OK\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"giovanna@gisa.com\",\r\n  \"password\": \"Tst@2020\",\r\n  \"latitude\": \"{{$randomLatitude}}\",\r\n  \"longitude\": \"{{$randomLongitude}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/gisa/auth/account/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"gisa",
+								"auth",
+								"account",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[API] Account Login Prestador",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(pm.info.requestName + \" - Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(pm.info.requestName + \" - Response Time OK\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"cap@gisa.com\",\r\n  \"password\": \"Tst@2020\",\r\n  \"latitude\": \"{{$randomLatitude}}\",\r\n  \"longitude\": \"{{$randomLongitude}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/gisa/auth/account/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"gisa",
+								"auth",
+								"account",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[API] Account Register",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(pm.info.requestName + \" - Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(pm.info.requestName + \" - Response Time OK\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"{{$randomFirstName}}.{{$randomLastName}}{{$randomInt}}@gisa.com\",\r\n    \"password\": \"Tst@2020\",\r\n    \"confirmPassword\": \"Tst@2020\",\r\n    \"role\": 2,\r\n    \"latitude\": \"{{$randomLatitude}}\",\r\n    \"longitude\": \"{{$randomLongitude}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/gisa/auth/account/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"gisa",
+								"auth",
+								"account",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[API] Account GetUserInfo",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(pm.info.requestName + \" - Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(pm.info.requestName + \" - Response Time OK\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "access_token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMDE2ZTgwNC04ZWRiLTQ3YTEtOGNmOS0wM2JlODJiNGMxODAiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiZ2lvdmFubmEiLCJqdGkiOiJjYzE1ZDU2ZC1hNzhiLTRjYjQtOTEyNy02OTU2ZTNhYzM2ODUiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJBc3NvY2lhZG8iLCJleHAiOjE2NTAwNTg3NzYsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6OTAwMCIsImF1ZCI6Imh0dHA6Ly9sb2NhbGhvc3Q6OTAwMCJ9.2r2VWnjQr_kwijfk9_FAeUZdjTabjAQ2nnCHDUxWE4g",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/gisa/auth/account/userinfo",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"gisa",
+								"auth",
+								"account",
+								"userinfo"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "[MIC] Refund",
+			"item": [
+				{
+					"name": "Refund's User - Associado",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(pm.info.requestName + \" - Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(pm.info.requestName + \" - Response Time OK\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMDE2ZTgwNC04ZWRiLTQ3YTEtOGNmOS0wM2JlODJiNGMxODAiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiZ2lvdmFubmEiLCJqdGkiOiIzZDExNWRkZi0xNWFjLTRlZDAtYmUzYS01ZGY2OGZjNjJkYzMiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJBc3NvY2lhZG8iLCJleHAiOjE2NTAwNjM2NzMsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6OTAwMCIsImF1ZCI6Imh0dHA6Ly9sb2NhbGhvc3Q6OTAwMCJ9.vSxw8dBcIu7D0xQ0Kwk-_eKAkr6BVFskJdlAPXgSye4",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/gisa/mic/refund",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"gisa",
+								"mic",
+								"refund"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "All Refunds - Prestador",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(pm.info.requestName + \" - Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(pm.info.requestName + \" - Response Time OK\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJmYjA2ZDU0Ni00OGU5LTRkMGUtOTI2ZS1iYWE5MWJhMDJjNDAiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiQ0FQIiwianRpIjoiNDk2ODMzOGUtYmYyYy00NTY4LWE4OTgtOGQ4NDdjOGEyNTA0IiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiUHJlc3RhZG9yIiwiZXhwIjoxNjUwMDQ3OTI1LCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjkwMDAiLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0OjkwMDAifQ.uQxTAvMt50_YERv5ffxScXQqT6_0j_-yZCRo0CF2Ens",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/gisa/mic/refund/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"gisa",
+								"mic",
+								"refund",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "All Refunds - Without Token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(pm.info.requestName + \" - Status code is 401\", function () {\r",
+									"    pm.response.to.have.status(401);\r",
+									"});\r",
+									"\r",
+									"pm.test(pm.info.requestName + \" - Response Time OK\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJmYjA2ZDU0Ni00OGU5LTRkMGUtOTI2ZS1iYWE5MWJhMDJjNDAiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiQ0FQIiwianRpIjoiNDk2ODMzOGUtYmYyYy00NTY4LWE4OTgtOGQ4NDdjOGEyNTA0IiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiUHJlc3RhZG9yIiwiZXhwIjoxNjUwMDQ3OTI1LCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjkwMDAiLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0OjkwMDAifQ.uQxTAvMt50_YERv5ffxScXQqT6_0j_-yZCRo0CF2Ens",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/gisa/mic/refund/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"gisa",
+								"mic",
+								"refund",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Refund - Associado",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(pm.info.requestName + \" - Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"pm.test(pm.info.requestName + \" - Response Time OK\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMDE2ZTgwNC04ZWRiLTQ3YTEtOGNmOS0wM2JlODJiNGMxODAiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiZ2lvdmFubmEiLCJqdGkiOiIxOGY2YmE1OS1iNDE1LTQyMzktYjdmMC0xMzBjZmU0NThkNDQiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJBc3NvY2lhZG8iLCJleHAiOjE2NTAwNjQwODgsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6OTAwMCIsImF1ZCI6Imh0dHA6Ly9sb2NhbGhvc3Q6OTAwMCJ9.F9jjj2yFswmKYKW_vIhwfuhlHMjLBgcHN9FurPpytI4",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"type\": 1,\r\n  \"price\": \"350\",\r\n  \"date\": \"15/04/2022\",\r\n  \"NFeNumber\": \"101119\",\r\n  \"nFeLink\": \"http://linkdanfe.receita.gov.br/nfe/101119\",\r\n  \"cnpjProvider\": \"00.394.544/0202-91\",\r\n  \"description\": \"Consulta nefrologista\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/gisa/mic/refund",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"gisa",
+								"mic",
+								"refund"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Refund - Forbidden",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(pm.info.requestName + \" - Status code is 403\", function () {\r",
+									"    pm.response.to.have.status(403);\r",
+									"});\r",
+									"\r",
+									"pm.test(pm.info.requestName + \" - Response Time OK\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJmYjA2ZDU0Ni00OGU5LTRkMGUtOTI2ZS1iYWE5MWJhMDJjNDAiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiQ0FQIiwianRpIjoiYzc3MjA1ZTctN2IxNi00YTNlLTllYjMtN2U3NTkwY2VlMTliIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiUHJlc3RhZG9yIiwiZXhwIjoxNjUwMDczNTM5LCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjkwMDAiLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0OjkwMDAifQ.nNhj-ZseCPvOqV6LSYYKOfbN8jq-4_jppFJhiYwb_0s",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"type\": 1,\r\n  \"price\": \"350\",\r\n  \"date\": \"15/04/2022\",\r\n  \"NFeNumber\": \"101119\",\r\n  \"nFeLink\": \"http://linkdanfe.receita.gov.br/nfe/101119\",\r\n  \"cnpjProvider\": \"00.394.544/0202-91\",\r\n  \"description\": \"Consulta nefrologista\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/gisa/mic/refund",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"gisa",
+								"mic",
+								"refund"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Refund - Prestador",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(pm.info.requestName + \" - Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(pm.info.requestName + \" - Response Time OK\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJmYjA2ZDU0Ni00OGU5LTRkMGUtOTI2ZS1iYWE5MWJhMDJjNDAiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiQ0FQIiwianRpIjoiMmRmZTg0MzQtOTM0Yy00OGRiLWJhZWEtYWJjNTlmMjRkMTM0IiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiUHJlc3RhZG9yIiwiZXhwIjoxNjUwMDUxMDkyLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjkwMDAiLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0OjkwMDAifQ.JOEoflwmNAcvu_mYq95dbB6EvxmHii6hnPGQBtuPZvc",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 14,\r\n  \"status\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/gisa/mic/refund/14",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"gisa",
+								"mic",
+								"refund",
+								"14"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
